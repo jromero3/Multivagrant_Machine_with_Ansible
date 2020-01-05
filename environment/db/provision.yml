@@ -1,0 +1,53 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Get the mongodb Key
+      apt_key:
+        keyserver: hkp://keyserver.ubuntu.com:80
+        id: D68FA50FEA312927
+
+    - name: Add the mongo Source List
+      lineinfile:
+        line: "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
+        dest: /etc/apt/sources.list.d/mongodb-org-3.2.list
+        state: present
+        create: yes
+
+    - name: Update and Upgrade
+      apt:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Uninstall mongodb
+      apt:
+        pkg:
+          - mongodb-org=3.2.20
+          - mongodb-org-server=3.2.20
+          - mongodb-org-shell=3.2.20
+          - mongodb-org-mongos=3.2.20
+          - mongodb-org-tools=3.2.20
+        state: absent
+
+    - name: Install mongodb
+      apt:
+        pkg:
+          - mongodb-org=3.2.20
+          - mongodb-org-server=3.2.20
+          - mongodb-org-shell=3.2.20
+          - mongodb-org-mongos=3.2.20
+          - mongodb-org-tools=3.2.20
+        state: present
+        update_cache: yes
+        force: yes
+
+    - name: Link config file to etc
+      copy:
+        src: /home/ubuntu/environment/db/mongod.conf
+        dest: /etc/mongod.conf
+
+    - name: Restart and Enable mongodb
+      systemd:
+        state: restarted
+        name: mongod
+        enabled: yes

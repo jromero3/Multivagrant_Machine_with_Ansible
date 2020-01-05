@@ -1,10 +1,10 @@
 # Instructions
 
-1) Download all the files inside this repository
+1) Download all the files inside this repository as a zip
 
-2) Save them inside a folder of your choice
+2) Extract the folder inside the zip to a directory of your choice
 
-3) Using Git Bash and the cd command, go inside the folder you saved all the files in
+3) Using Git Bash and the cd command, go inside the folder you extracted. Inside should be all the files and folders listed in the repository (check using 'ls -al' in Git Bash)
 
 4) Having Vagrant 2.2.5 installed on your computer, type the command "vagrant up" and wait for the set up to be complete
 

@@ -9,3 +9,11 @@
 4) Having Vagrant 2.2.5 installed on your computer, type the command "vagrant up" and wait for the set up to be complete
 
 5) Once the task "Run app.js with node.js" shows up, wait one minute, then go on your browser and type "http://development.local". It should show a homepage saying the app is running correctly. If you type "http://development.local/posts", it will show you a "Recent Posts" page.
+
+## If you wish to exit: 
+
+1) Go back to the Git Bash where the app.js task is running and do Ctrl + C
+
+2) Now write "vagrant ssh app" to go inside the app virtual machine
+
+3) Now type "kill -9 -1" to terminate the vm
